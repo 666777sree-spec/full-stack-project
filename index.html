@@ -90,11 +90,23 @@
           <h3>Pomodoro Timer</h3>
           <p class="muted">25 minutes of focused work, then take a short break.</p>
           <div id="timerDisplay" class="timer-display">25:00</div>
-          <div class="timer-actions">
-            <button id="startTimer" class="primary-btn">▶ Start</button>
-            <button id="pauseTimer" class="secondary-btn">⏸ Pause</button>
-            <button id="resetTimer" class="secondary-btn">↻ Reset</button>
-          </div>
+          <div class="timer-settings">
+<label for="focusTime">Focus Time</label>
+<select id="focusTime">
+<option value="10">10 minutes</option>
+<option value="15">15 minutes</option>
+<option value="25" selected>25 minutes</option>
+<option value="30">30 minutes</option>
+<option value="45">45 minutes</option>
+<option value="60">60 minutes</option>
+</select>
+</div>
+
+<div class="timer-actions">
+<button id="startTimer" class="primary-btn">▶ Start</button>
+<button id="pauseTimer" class="secondary-btn">⏸ Pause</button>
+<button id="resetTimer" class="secondary-btn">↻ Reset</button>
+</div>
           <p id="timerStatus" class="timer-status">Ready when you are.</p>
           <div class="session-count">Completed focus sessions: <b id="sessionCount">0</b></div>
         </div>
