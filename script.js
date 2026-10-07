@@ -19,8 +19,23 @@ const schedule = [
 let tasks = JSON.parse(localStorage.getItem("ff_tasks") || "null") || defaultTasks;
 let goals = JSON.parse(localStorage.getItem("ff_goals") || "null") || defaultGoals;
 let sessions = Number(localStorage.getItem("ff_sessions") || 0);
-let timerSeconds = 25 * 60, timerId = null;
+let focusMinutes = Number(localStorage.getItem("ff_focusMinutes") || 25);
+let timerSeconds = focusMinutes * 60;
+let timerId = null;
+$("focusTime").value=focusMinutes;
 
+$("focusTime").onchange=()=>{
+if(timerId){
+alert("Pause the timer before changing the focus time.");
+return;
+}
+
+focusMinutes=Number($("focusTime").value);
+localStorage.setItem("ff_focusMinutes",focusMinutes);
+timerSeconds=focusMinutes*60;
+updateTimer();
+$("timerStatus").textContent=`Focus time set to ${focusMinutes} minutes.`;
+};
 const $ = id => document.getElementById(id);
 const save = () => {
   localStorage.setItem("ff_tasks", JSON.stringify(tasks));
@@ -144,8 +159,13 @@ $("startTimer").onclick=()=>{
   },1000);
 };
 $("pauseTimer").onclick=()=>{if(timerId){clearInterval(timerId);timerId=null;$("timerStatus").textContent="Paused. Resume when ready.";}}
-$("resetTimer").onclick=()=>{clearInterval(timerId);timerId=null;timerSeconds=25*60;updateTimer();$("timerStatus").textContent="Ready when you are.";};
-
+$("resetTimer").onclick=()=>{
+clearInterval(timerId);
+timerId=null;
+timerSeconds=focusMinutes*60;
+updateTimer();
+$("timerStatus").textContent="Ready when you are.";
+};
 $("themeBtn").onclick=()=>{
   document.body.classList.toggle("dark");
   const dark=document.body.classList.contains("dark");
