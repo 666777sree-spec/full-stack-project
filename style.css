@@ -1,170 +1,221 @@
+:root {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger-color: #ef4444;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
+
 body {
-  background-color: #f4f6f9;
-  color: #333;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    padding: 2rem 1rem;
+    min-height: 100vh;
 }
 
-.app-container {
-  max-width: 600px;
-  width: 100%;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.app-header {
-  text-align: center;
-  margin-bottom: 25px;
+header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.app-header h1 {
-  font-size: 2.2rem;
-  color: #2b3a4a;
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
-.tagline {
-  color: #6c757d;
-  font-size: 1rem;
+header p {
+    color: var(--text-secondary);
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .app-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .notes-card {
+        grid-column: span 2;
+    }
 }
 
 .card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  text-align: center;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .card h2 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  color: #2b3a4a;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
 }
 
+
+.timer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .timer-display {
-  font-size: 4rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 10px 0;
-}
-
-.timer-status {
-  font-size: 1rem;
-  color: #64748b;
-  margin-bottom: 20px;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    font-variant-numeric: tabular-nums;
 }
 
 .timer-settings {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .timer-settings select {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  background-color: #fff;
-  font-size: 0.95rem;
-  cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
 }
 
-.timer-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.timer-settings select:focus {
+    border-color: var(--primary-color);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 0.5rem;
 }
 
 
 .btn {
-  padding: 10px 18px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.primary-btn {
-  background-color: #2563eb;
-  color: white;
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
 }
 
-.primary-btn:hover {
-  background-color: #1d4ed8;
+.btn.primary:hover {
+    background-color: var(--primary-hover);
 }
 
-.secondary-btn {
-  background-color: #e2e8f0;
-  color: #334155;
+.btn.secondary {
+    background-color: var(--border-color);
+    color: var(--text-primary);
 }
 
-.secondary-btn:hover {
-  background-color: #cbd5e1;
+.btn.secondary:hover {
+    background-color: #cbd5e1;
 }
 
 
-.task-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+.task-input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.task-form input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 1rem;
+.task-input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    outline: none;
 }
 
-.task-form input:focus {
-  outline: 2px solid #2563eb;
-  border-color: transparent;
+.task-input-group input:focus {
+    border-color: var(--primary-color);
 }
 
 .task-list {
-  list-style: none;
-  text-align: left;
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
 .task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 14px;
-  border-radius: 6px;
-  background: #f8fafc;
-  margin-bottom: 8px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 0.75rem;
+}
+
+.task-item span {
+    flex: 1;
 }
 
 .task-item.completed span {
-  text-decoration: line-through;
-  color: #94a3b8;
+    text-decoration: line-through;
+    color: var(--text-secondary);
 }
 
 .delete-btn {
-  background: transparent;
-  border: none;
-  color: #ef4444;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 4px 8px;
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
 }
 
-.delete-btn:hover {
-  color: #b91c1c;
+
+.notes-card textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    resize: vertical;
+    outline: none;
+    font-family: inherit;
+}
+
+.notes-card textarea:focus {
+    border-color: var(--primary-color);
 }
